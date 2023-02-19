@@ -1,38 +1,217 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  font-family: "Rubik", sans-serif;
+  background-color: #111;
+  color: #fff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1,
+h3 {
+  font-weight: 400;
 }
 
-.App-header {
-  background-color: #282c34;
+.weather {
   min-height: 100vh;
+  color: #fff;
+  position: relative;
+  transition: 500ms;
+  opacity: 1; 
+}
+
+.weather--night {
+  background: linear-gradient(19deg, rgba(172,195,199,1) 0%, rgba(35,55,64,1) 68%);
+}
+
+.weather--cloudy {
+  background: linear-gradient(19deg, rgba(192,223,250,1) 0%, rgba(69,106,117,1) 68%);
+}
+
+.weather--sunny {
+  background-image: linear-gradient(18deg, rgba(192,223,250,1) 4%, rgba(66,159,186,1) 68%);
+}
+
+.weather--snow {
+  background-image: linear-gradient(19deg, rgba(130,233,252,1) 22%, rgba(214,244,252,1) 68%);
+}
+
+.weather::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 0;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   flex-direction: column;
-  align-items: center;
+  padding: 2em 3em 4em 3em;
+}
+
+.container > div {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.weather__city-wrapper {
+  display: flex;
+  align-items: flex-end;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.weather__city-time,
+.weather__temp,
+.weather__agree {
+  margin: 0 1em;
+}
+
+.weather__temp {
+  font-size: 7em;
+  margin: 0;
+}
+
+.weather__agree img {
+  display: block;
+  margin: 0.5em 0;
+}
+
+.rightebar-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 40%;
+  height: 100%;
+  background: rgba(110, 110, 110, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 3em 2em;
+  overflow-y: scroll;
+}
+
+.rightebar-panel__form {
+  margin-bottom: 3em;
+}
+
+.rightebar-panel__submit-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.2em;
+  padding: 2em;
+  margin: 0;
+  background-image: url('./assets/images/search-icon.svg');
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: center center;
+  background-color: #aaddec;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.rightebar-panel__submit-btn:hover {  
+  color: #000;
+}
+
+.rightebar-panel__search {
+  background: none;
+  border: none;
+  border-bottom: 1px #ccc solid;
+  padding: 0 1em 0.5em 0;
+  width: 80%;
+  color: #fff;
+  font-size: 1.1em;
+}
+
+.rightebar-panel__search:focus {
+  outline: none;
+}
+
+.rightebar-panel__search::placeholder {
+  color: #ccc;
+}
+
+.rightebar-panel__cities-list {
+  list-style: none;
+  padding: 0 0 1em 0;
+  margin: 2em 0;
+  border-bottom: 1px #ccc solid;
+}
+
+.cities-list__item {
+  display: block;
+  cursor: pointer;
+  color: #ccc;
+  margin: 2.5em 0;
+}
+
+.cities-list__item:hover {
+  color: #fff;
+}
+
+.right-bar__details-title {
+  margin: 3em 0;
+}
+
+.details-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.details-list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2.5em 0;
+}
+
+
+@media screen and (max-width: 1000px) {
+  html {
+    font-size: 14px;
   }
-  to {
-    transform: rotate(360deg);
+  .temp {
+    font-size: 4em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .rightebar-panel,
+  .container {
+    position: relative;
+    width: 100%;
+    top: initial;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-height: 300px) {
+  .weather {
+    min-height: 40em;
   }
 }
